@@ -448,6 +448,18 @@ mbp_sysfs_backlight_probe(void)
 	  }
 	return ret;
 
+      case MACHINE_MACBOOK_4:
+	logmsg(LOG_INFO, "sysfs backlight probe failed, falling back to gma950");
+
+	ret = gma950_backlight_probe();
+	if (ret == 0)
+	  {
+	    /* Wire up fallback native driver */
+	    mops->lcd_backlight_step = gma950_backlight_step;
+	    mops->lcd_backlight_toggle = gma950_backlight_toggle;
+	  }
+	return ret;
+
       default:
 	logmsg(LOG_ERR, "sysfs backlight probe failed, no fallback for this machine");
 	return -1;

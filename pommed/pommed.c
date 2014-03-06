@@ -362,9 +362,9 @@ struct machine_ops mb_mops[] = {
 
   {  /* MacBook4,1 (Core2 Duo, February 2008) */
     .type = MACHINE_MACBOOK_4,
-    .lcd_backlight_probe = gma950_backlight_probe, /* gma950 supports the gma965 */
-    .lcd_backlight_step = gma950_backlight_step,
-    .lcd_backlight_toggle = gma950_backlight_toggle,
+    .lcd_backlight_probe = mbp_sysfs_backlight_probe,
+    .lcd_backlight_step = sysfs_backlight_step,
+    .lcd_backlight_toggle = sysfs_backlight_toggle,
     /* .evdev_identify = evdev_is_geyser4hf, */
   },
 
